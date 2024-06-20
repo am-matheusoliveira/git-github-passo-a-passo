@@ -1,0 +1,208 @@
+
+Data: 20/06/2025 10:00
+
+Autor: Matheus Pereira
+
+Descrição:
+    nesse bloco de notas temos uma variedade de comandos usados no Git, para o versionamento dos projetos.
+
+OBS: todos esses comandos foram de dois cursos de Git e GitGub o 1º do Canal Curso em Vídeo o 2º do Canal DevAprender.
+
+Playlist do Curso no Canal Curso em Video: https://www.youtube.com/playlist?list=PLHz_AreHm4dm7ZULPAmadvNhH6vk9oNZA
+Curso no Canal DevAprender: https://www.youtube.com/watch?v=kB5e-gTAl_s
+
+
+--------------------------------------------INICIO DO COMANDOS-----------------------------------------------------
+
+
+--------------------------------------------Erros e Warning's------------------------------------------------------
+
+WARNING 01: 
+    warning: in the working copy of 'file_name', 
+    LF will be replaced by CRLF the next time Git touches it
+    Descrição: o erro acima se refere a final de linha dentro do arquivo criado, e apenas um aviso,
+    não precisamos nos incomodar com ele, mais caso queira remove-lo siga os passos abaixo.
+
+    1º na raiz do projeto crie o arquivo '.gitattributes' depois cloque a seguinte linha '* text=auto'
+    2º excute o comando a seguir na pasta onde esta o arquivo '.gitattributes', git add --renormalize .
+    3º podemos agora excutar novamente o comando 'git add . ou  file_name' agora o erro não ira + aparecer.
+
+
+------------------------------------------------------------------------------
+# remover arquivo do historico de commit's
+    ASSIM:
+        git filter-branch --index-filter "git rm -rf --cached --ignore-unmatch path_to_file" HEAD
+        git filter-branch --index-filter "git rm -rf --cached --ignore-unmatch path_to_file" HEAD
+    OU ASSIM:
+        git filter-branch --force --index-filter \ 'git rm --cached --ignore-unmatch path_to_file' \ --prune-empty --tag-name-filter cat -- --all
+        git filter-branch --force --index-filter \ 'git rm --cached --ignore-unmatch path_to_file' \ --prune-empty --tag-name-filter cat -- --all
+------------------------------------------------------------------------------
+
+---------------------------------------COMANDOS MAIS USADOS----------------------------------------------------------
+
+------------------------------------------------------------------------------
+# visualizar historico des versões do código.
+    comando: git reflog
+------------------------------------------------------------------------------    
+
+------------------------------------------------------------------------------
+# voltar a uma versão antiga do código.
+    comando: git reset --hard version_id
+------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+# visualizar onde esta o arquivo de configurações de credenciais do GIT, nele você vera, seu usuário e seu email.
+    comando: git config --list --show-origin
+------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+# configurando suas credenciais no GIT.
+    comando-email: git config --global user.email "email address"
+    comando-username: git config --global user.name "username"
+------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+# renomeando a 'branch' para 'main' caso não se chame assim.
+    comando: isso aqui => 'git branch -M main' é o mesmo que 'git branch --force --move main'
+------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+# incluir novo repositorio remote do GitHub, e incluir o TOKEN e o USUÁRIO.
+OBS: esse comando deve ser excutado na pasta onde esta o projeto que e o mesmo repositorio.
+    comando: git remote set-url origin https://<USERNAME>:<MYTOKEN>@github.com/<USERNAME>/<REPO>.git
+------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+# remover a origem de um repositorio remoto GIT.
+    comando: git remote remove origin
+------------------------------------------------------------------------------
+
+-------------------------COMANDOS USADOS NO CURSO DE GIT DO CANAL DevAprender-----------------------------------
+
+------------------------------------------------------------------------------
+# comando de ajuda, git.
+    comando: git --help
+------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+# inicia projeto git, esse comando cria os recursos necesario, para que seu codigo seja versionado.
+    comando: git init
+------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+# verificar o status do projeto, veremos as modificações feitas nos arquivos, ou inclusão de novos.
+    comando: git status
+------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+# incluir os novos arquivos ou incluir os alterados ao controle de versão.
+    comando: git add .
+OBS: nesse comando podemos adicionar um ou todos os arquivos,
+para adicionar todos coloque o '.' no final do comando,
+ou diga o nome do arquivo em aspas duplas caso ele tenha espaço.
+------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+# commita ou confirmar as alterações realizadas no projeto.
+    comando: git commit -m "mensagem obrigatoria - texto simples"
+------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+# caso deseje cancelar um commit, pode-se usar o comando abaixo.
+    comando: git rm --cached file_name
+OBS: usando esse comando acima sera necessario usar novamente o comando 'git add . ou file_name', apos realizada as novas alterações.
+------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+# adicionando um repositorio remoto do GitHub para subir alterações.
+    comando: git remote add origin repository_name ou url_repository
+------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+# enviando o codigo para o GitHub e definindo para qual 'branch' sera enviado.
+    comando: git push --set-upstream repository_name ou url_repository ou origin 'branch_name'
+OBS: depois de excutar o comando acima não tem necessidade de excuta-lo por completo na proxima vez, excute apenas 'git push origin main'.
+------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+# puxando as alterações feitas no repositorio remoto e por uma 'branch' especifica.
+    comando: git pull -f repository_name ou url_repository ou origin 'branch_name'
+OBS: vamos usar a flag '-f' para correção de possiveis erros, depois não sera mais necesario usar essa-la.
+------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+# BRANCH, em inglês o nome branch significa GALHO, mais chamamos de BRANCH,
+elas são copias do projeto que estão dividas em locais diferentes, com nomes diferentes,
+esse conceito e muito usado quando trabalhamos em equipes, 
+e cada participante mexe em uma parte diferente do código,
+cada participante enviara suas alterações para uma branch que ele esta trabalhando,
+no final acontecera uma mesclação de branch's onde todo o projeto sera um so, 
+claro que isso so acontecera se tudo estiver como o esperado.
+Outra coisa: todo projeto tem a branch principal e sera ela que unira tudo em um so,
+o processo final se chama MERGE iremos fazer o merge de todas as branch's para a principal,
+que é o projeto que esta em produção.
+------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+# listar as branch's
+    comando: git branch
+------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+# segundo o cara do canal DEV-APRENDER um nome comum para uma nova branch e: staging, criando nova branch.
+    comando: git branch staging ou qualquer outro nome
+------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+# trocando a branch
+    comando: git checkout branch_name
+------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+# processo para unir o codigo de uma branch secundaria com a branch principal
+    comandos:
+        1º trocar para a branch principal => git checkout branch_principal_name
+        2º execute o 'git pull' para puxar a versão mais atual do projeto principal
+        3º git merge branch_secundaria
+------------------------------------------------------------------------------        
+ou 
+------------------------------------------------------------------------------
+# PASSO A PASSO DO COLEGA DO YOU-TUBE
+    comandos:
+        1: git pull da branch principal
+        2: gerar uma nova branch a partir da branch principal
+        3: trabalhar e adicionar novas funcionalidades na nova branch que criou
+        4: finalizar o trabalho na branch temporária
+        5: git checkout na branch principal
+        6: git pull
+        7: mergiar(unir) o código da branch temporária com a branch principal(depois de testar)
+        8: git push da branch principal
+------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+# otimizando escrita, criando uma nova branch apartir da branch principal e já entrando nela.
+    comando: git checkout -b new_branch_name branch_principal_name
+------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+# pull request, um merge mais democratico - trabalho em equipe.
+
+# o processo descrito acima se trata de uma forma em que o merge so ira acontecer se ele for validado,
+por um responsavel pela equipe ou alguem delegado a ele, eles podem aprovar aquela mudança ou não.
+
+Outra coisa: esse processo e feito no GitHub e não no 'Git CLI',
+lá iremos comparar uma mudança em uma branch secundaria com outra branch principal.
+NOTA: sera criado uma solicitação e depois ela ira passar por uma aprovação.
+------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+# arquivo .gitignore, nele podemos definir arquivos e pastas que não queremos que seja versionado.
+nome do arquivo: '.gitignore'
+------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+# issues, isso nada mais e doque uma seção dedicada a usuários de um certo repositorio,
+essa seção permite eles debaterem sobre erros, 
+problemas e melhorias em formato de mensagens onde um iterage com o outro,
+sobre assuntos que estão relacionados sobre aquele repositorio.
+------------------------------------------------------------------------------

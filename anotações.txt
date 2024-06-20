@@ -1,0 +1,4 @@
+DATA: 18/06/2024 08:00
+
+Canal: Curso em Vídeo
+Curso: Git e GitHub
