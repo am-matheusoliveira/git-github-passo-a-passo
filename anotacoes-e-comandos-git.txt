@@ -41,9 +41,76 @@ WARNING 01:
 ---------------------------------------COMANDOS MAIS USADOS----------------------------------------------------------
 
 ------------------------------------------------------------------------------
-# visualizar historico des versões do código.
+# visualizar historico das versões do código.
     comando: git reflog
 ------------------------------------------------------------------------------    
+
+------------------------------------------------------------------------------
+# visualizar historico de commits do código.
+    comando: git log
+# comando com parametros:
+    - listar o historico de commits em apenas uma linha
+        git log --oneline
+
+    - listar o historico de commits em apenas uma linha do mais antigo ao mais recente
+        git log --oneline --reverse
+    
+    - acessar um desses historico de commits
+        git checkout id_commit
+
+    - voltar para versão mais recente
+        git checkout id_commit ou git checkout branch_name
+
+    - pesquisar commits a partir de um texto
+        git log --oneline --grep "texto_a_pesquisar"
+
+        OBS: esse comando tem Case-Sensitive, para resolver isso inclua --i
+
+        git log --oneline --grep "texto_a_pesquisar" -i
+
+    - detalhar cada commit realizado
+        git log --oneline -c
+
+        OBS: para visualizar apenas um commit inclua o id_commit assim:
+
+        git log --oneline -c id_commit
+------------------------------------------------------------------------------    
+
+------------------------------------------------------------------------------
+# navegar pelo historico de commits e identificar momentos em que um erro aconteceu
+    - iniciar a busca binaria
+        git bisect start
+    - momento em que esta tudo certo
+        git bisect good id_commit
+        git bisect good id_commit - inicio do projeto 1º commit
+        git bisect bad master - momento em que estamos 
+
+        OBS: agora basta irmos descendo os niveis ate chegar o momento do erro assim:
+
+        git biscet good - se estiver indo no caminho certo
+        git biscet bad - se estiver indo no caminho errado.
+
+        - assim por diante ate ele cherga no commit que deu o erro
+        
+        - encerrar a busca binaria
+            git bisect reset
+------------------------------------------------------------------------------  
+
+------------------------------------------------------------------------------
+# listar o historico de alterações mais detalhados linha á linha                
+    comando: git blame file_name
+
+    - listar por arquivo e mostrar o email de quem alterou aquele arquivo
+    comando: git blame -e file_name
+
+    - listar por arquivo e mostrar a chave completa do commit
+    comando: git blame -l file_name
+
+    - listar por arquivo e mostrar um range de numero de linha de x a y
+    comando: git blame -L 17,19 file_name    
+    OBS: esse -L tem que ser em MAIUSCULO e esse 17,19 e o numero da linha de inicio e o numero da linha final
+    
+------------------------------------------------------------------------------  
 
 ------------------------------------------------------------------------------
 # voltar a uma versão antiga do código.
