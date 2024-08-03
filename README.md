@@ -1,24 +1,3 @@
-1. 1º lista
-    1. 1º sub-lista
-    2. 2º sub-lista
-    3. 3º sub-lista
-2. 2º lista
-    1. 1º sub-lista
-    2. 2º sub-lista
-    3. 3º sub-lista
-3. 3º lista
-    1. 1º sub-lista
-    2. 2º sub-lista
-    3. 3º sub-lista
-* lista
-    - 1º sub-lista
-    - 2º sub-lista
-    - 3º sub-lista
-* lista
-    - 1º sub-lista
-    - 2º sub-lista
-    - 3º sub-lista
-* lista
-    - 1º sub-lista
-    - 2º sub-lista
-    - 3º sub-lista
+# ANOTAÇÕES E COMANDOS DE GIT PARA VOCÊ PRATICAR
+## TODOS ESSES COMANDOS FORAM ORGANIZADOS PARA FACILITAR SEU APRENDIZADO NO DIA Á DIA
+### Nesse repositório, temos uma pequena aplicação e um bloco de notas com vários comandos para aprender e praticar Git.
